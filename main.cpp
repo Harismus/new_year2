@@ -1,11 +1,9 @@
-
-
 #include <QApplication>
-#include "wgt.h"
+#include "mainclass.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    Wgt wgt;
+    MainClass mainClass;
     return a.exec();
 }

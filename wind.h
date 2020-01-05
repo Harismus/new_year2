@@ -1,23 +1,23 @@
-#ifndef WIND_H
-#define WIND_H
-#include <cstdlib>
+#pragma once
+
+
+
 
 /*
  * @brief Wind класс определяющий ветер
- * */
-
+*/
 class Wind
-{
-
-    float speedX,speedY;
-    int count;
-    int mod;
-    float drobnoe;
+{   
 public:
     Wind();
     void changeSpeed();
     float getSpeedX();
     float getSpeedY();
+
+private:
+    float speedX,speedY;
+    int count;
+    int mod;
+    float drobnoe;
 };
 
-#endif // WIND_H
