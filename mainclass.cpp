@@ -2,28 +2,26 @@
 
 #include "mainclass.h"
 #include "monitorssize.h"
+#include "random.h"
 
 
 MainClass::MainClass()
-    : countSnow(50)
+    : countSnow(60)
     , pixmapSnowWidth(32)
-    , gen(time(0))
-    , uid(0, MonitorsSize::getQSizeAt(0).width())
-    , genShower(0, 100)
 {
     createSnowList();
-    //  elka.show();
+//      elka.show();
 
     connect(&timer, &QTimer::timeout, this, &MainClass::calcSnowPosition);
 
-    timer.start(60);
+    timer.start(50);
 }
 
 void MainClass::createSnowList()
 {
     for (int i = 0; i < countSnow; ++i)
     {
-        pBegin = QPoint(uid(gen), -pixmapSnowWidth);
+        pBegin = QPoint(Random::get(0, MonitorsSize::getQSizeAt(0).width()), -pixmapSnowWidth);
 
         IWidget * snowFlake = new Snow;
         snowFlake->initilizeVariable(pBegin);
@@ -40,7 +38,7 @@ void MainClass::calcSnowPosition()
         if (!checkShow(i))     //!<
             continue;
 
-        widgetList.at(i)->doWind(wind.getSpeedX(), wind.getSpeedY());
+        widgetList.at(i)->onWind(wind.getSpeedX(), wind.getSpeedY());
         widgetList.at(i)->move();
 
         if (checkBottom(i))     //!< проверка выхода за низ
@@ -54,7 +52,7 @@ void MainClass::calcSnowPosition()
 
 bool MainClass::checkShow(const int & index)
 {
-    if (!widgetList.at(index)->getFlagShow() && genShower(gen) == 0)
+    if (!widgetList.at(index)->getFlagShow() && Random::get(0, 99) == 0)
     {
         widgetList.at(index)->show();
         return true;
@@ -73,7 +71,7 @@ bool MainClass::checkBottom(const int & index)
 {
     if (widgetList.at(index)->y() > MonitorsSize::getQSizeAt(0).height()) //!< если вышел за нижние пределы экрана, то возвращаем на начальную позицию
     {
-        pBegin = QPoint(uid(gen), -pixmapSnowWidth);
+        pBegin = QPoint(Random::get(0, MonitorsSize::getQSizeAt(0).width()), -pixmapSnowWidth);
         widgetList.at(index)->initilizeVariable(pBegin);
         widgetList.at(index)->hide();
         return true;

@@ -3,42 +3,38 @@
 #include <cstdlib>
 
 #include "wind.h"
+#include "random.h"
 
 
 Wind::Wind()
+    : speedX(0)
+    , speedY(0)
+    , count(0)
+    , drobnoe(0)
 {
-    speedX = 0;
-    speedY = 0;
-    count = 0;
-    mod = 1;
-    drobnoe = 0;
+
 }
 
 void Wind::changeSpeed()
 {
-    if (count >= 1)
+    if (Random::get(0, 100) >= 90)
     {
-        int i = (rand() % 20);
-
-        if (mod >= 50 && i >= 10)
-        {
-            i = (rand() % 2);
-            if (!i)
-                i= -1;
-
-            mod = 0;
-            drobnoe += i * (float)(rand() % 10) / 100;
-            if (speedX >= 2.5 && drobnoe > 0)
-                drobnoe = -drobnoe;
-            else if (speedX <= -2.5 && drobnoe < 0)
-                drobnoe = -drobnoe;
-            else
-                speedX += drobnoe;
-        }
-        count = 0;
-        mod++;
+        drobnoe += getModule() * Random::get(0.0, 0.05);
+        if ((speedX >= 2.5) && (drobnoe > 0))
+            drobnoe = -drobnoe;
+        else if ((speedX <= -2.5) && (drobnoe < 0))
+            drobnoe = -drobnoe;
+        else
+            speedX += drobnoe;
     }
-    count++;
+}
+
+int Wind::getModule()
+{
+    int i = (Random::get(0, 1));
+    if (!i)
+        i= -1;
+    return i;
 }
 
 float Wind::getSpeedX()

@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 /*
  * @brief Wind класс определяющий ветер
 */
@@ -15,9 +13,10 @@ public:
     float getSpeedY();
 
 private:
-    float speedX,speedY;
+    float speedX;
+    float speedY;
     int count;
-    int mod;
     float drobnoe;
+    int getModule();
 };
 

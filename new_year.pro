@@ -33,6 +33,7 @@ HEADERS  += \
     iwidget.h \
     mainclass.h \
     monitorssize.h \
+    random.h \
     snow.h \
     wind.h
 

@@ -15,7 +15,7 @@ public:
     Elka();
 
 private:
-    void doWind(float x,float y) override;
+    void onWind(float x,float y) override;
     void initilizeVariable(QPointF) override;
     void move() override;
     void move(int x, int y) override;

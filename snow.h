@@ -11,7 +11,7 @@ public:
 
 
 private:
-    void doWind(float x,float y) override;
+    void onWind(float x,float y) override;
     void initilizeVariable(QPointF) override;
     void move() override;
     void move(int x, int y) override;
@@ -19,15 +19,14 @@ private:
     void createMirrow() override;
     void clearMirrow() override;
     void paintEvent(QPaintEvent *) override;
-
+    void checkIntervalDelta();
 
 
     float deltaX;
     float deltaY;
-    float windX;
-    float windY;
     QPixmap pixmap;
     Snow * mirrowSnow;
     QPainter painter;
+
 
 };

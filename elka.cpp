@@ -7,7 +7,7 @@ Elka::Elka()
     setWindowFlags(getWindowFlags());
 }
 
-void Elka::doWind(float x, float y)
+void Elka::onWind(float x, float y)
 {
 
 }

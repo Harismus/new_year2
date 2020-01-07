@@ -37,13 +37,6 @@ private:
     int pixmapSnowWidth;
     IWidget * w;
     QPointF pBegin;
-    std::mt19937 gen;
-    std::uniform_int_distribution<int> uid;
-    std::uniform_int_distribution<int> genShower;
-
-
-
-
 
 public slots:
     void calcSnowPosition();

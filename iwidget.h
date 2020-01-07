@@ -11,7 +11,7 @@
 class IWidget:public QWidget
 {
 public:
-    virtual void doWind(float x,float y) = 0;
+    virtual void onWind(float x,float y) = 0;
     virtual void initilizeVariable(QPointF) = 0;
     virtual void move() = 0;
     virtual void move(int x, int y) = 0;
